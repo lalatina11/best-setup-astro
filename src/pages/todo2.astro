@@ -29,6 +29,9 @@ const paginatedTodos = todos.slice(startIndex, startIndex + itemsPerPage);
 
 // Define total pages
 const totalPages = Math.ceil(todos.length / itemsPerPage);
+if (pageNumber > totalPages) {
+  return Astro.redirect(`/todo2?page=${totalPages}`);
+}
 ---
 
 <Layout title="Todo">

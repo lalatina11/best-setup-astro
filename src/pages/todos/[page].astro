@@ -12,7 +12,6 @@ interface Todo {
 const { page } = Astro.params;
 const pageNumber = Number(page) || 1;
 
-
 const itemsPerPage = 10; // JSONPlaceholder has 200 todos, so let's paginate it
 
 // Fetch data
@@ -25,6 +24,9 @@ const paginatedTodos = todos.slice(startIndex, startIndex + itemsPerPage);
 
 // Define total pages
 const totalPages = Math.ceil(todos.length / itemsPerPage);
+if (pageNumber > totalPages) {
+  return Astro.redirect(`/todos/${totalPages}`);
+}
 ---
 
 <Layout title="Todo">

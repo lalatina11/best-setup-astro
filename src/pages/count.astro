@@ -1,0 +1,45 @@
+---
+import Click from "../components/icons/Click.astro";
+import Layout from "../layouts/Layout.astro";
+const number = 1;
+---
+
+<Layout>
+  <h1>Hello World</h1>
+  <main class="flex justify-center items-center">
+    <section
+      class="w-fit p-6 shadow-md shadow-slate-600 flex justify-center items-center flex-col gap-2 rounded-md border border-slate-600"
+    >
+      <input type="number" value={number} name="" id="numberRef" />
+      <div class="flex gap-2 items-center justify-center">
+        <span>Count is:</span>
+        <div id="count"></div>
+      </div>
+      <span class="btn btn-primary" id="btnCount"><Click /></span>
+    </section>
+  </main>
+</Layout>
+
+<script>
+  const countView = document.getElementById("count");
+  const countBtn = document.getElementById("btnCount");
+  const inpVal = document.getElementById("numberRef") as HTMLInputElement;
+  if (countView && countBtn && inpVal) {
+    let count = 0; // Initialize count with the input value
+
+    // Update the count display
+    const updateCount = () => {
+      countView.textContent = `${count}`;
+    };
+
+    // Add click event listener to the button
+    countBtn.addEventListener("click", () => {
+      count += Number(inpVal.value); // Increment count by the input value
+      updateCount(); // Update the display
+      console.log(count); // Optional: Log the current count
+    });
+
+    // Initialize the display
+    updateCount();
+  }
+</script>

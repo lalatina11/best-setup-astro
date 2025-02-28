@@ -1,0 +1,23 @@
+---
+const { currentPage, totalPages } = Astro.props;
+---
+
+<section class="flex justify-center items-center">
+  <div class="join">
+    <a
+      href={currentPage > 1 ? `/todo2?page=${currentPage - 1}` : "#"}
+      class={`join-item btn ${currentPage > 1 ? "btn-primary" : "btn-disabled"}`}
+      >Previous</a
+    >
+
+    <span class="join-item btn btn-disabled"
+      >Page {currentPage} of {totalPages}</span
+    >
+
+    <a
+      href={currentPage < totalPages ? `/todo2?page=${currentPage + 1}` : "#"}
+      class={`join-item btn ${currentPage < totalPages ? "btn-primary" : "btn-disabled"}`}
+      >Next</a
+    >
+  </div>
+</section>

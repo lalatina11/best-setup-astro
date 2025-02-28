@@ -1,0 +1,8 @@
+---
+const { userIdProps } = Astro.props;
+---
+
+<form action="/api/delete-user" method="POST">
+  <input type="text" name="id" hidden value={userIdProps} />
+  <button class="cursor-pointer">Delete</button>
+</form>

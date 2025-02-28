@@ -1,0 +1,20 @@
+---
+import Link from "./Link.astro";
+import ThemeController from "./ThemeController.astro";
+---
+
+<header
+  class="flex justify-between items-center w-full font-semibold p-2 border-b pr-4"
+>
+  <div class="flex gap-2 items-center">
+    <ThemeController />
+  </div>
+  <nav class="flex gap-4 items-center">
+    <Link href="/" className="btn btn-soft">Home</Link>
+    <Link href="/register" className="btn btn-soft">Register</Link>
+    <Link href="/count" className="btn btn-soft">Count</Link>
+    <Link href="/todos/1" className="btn btn-soft">Todo</Link>
+    <Link href="/todo2" className="btn btn-soft">Todo2</Link>
+  </nav>
+  <h1 class="text-2xl">Candra</h1>
+</header>

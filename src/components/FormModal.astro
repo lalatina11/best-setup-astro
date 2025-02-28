@@ -1,0 +1,99 @@
+---
+
+---
+
+<div id="modalToggle" class={`modal`}>
+  <div class="modal-box flex flex-col gap-2">
+    <h3 class="text-lg font-bold">Modal Form</h3>
+    <form
+      method="POST"
+      action="/api/add-user"
+      class="w-full flex flex-col gap-4 font-semibold"
+    >
+      <div class="flex flex-col gap-2">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" />
+      </div>
+      <div class="flex flex-col gap-2">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" />
+      </div>
+      <div class="flex flex-col gap-2">
+        <label for="avatarInput">Avatar</label>
+        <input type="file" accept="image/*" hidden id="avatarInput" />
+        <input type="text" name="avatar" hidden id="avatar" />
+        <div id="avatarPreview"></div>
+      </div>
+      <div class="flex flex-col gap-2">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" />
+        <label class="flex items-center mt-2 gap-2 cursor-pointer">
+          <input
+            id="togglePassword"
+            type="checkbox"
+            class="w-4 h-4 rounded-md"
+          />
+          <span class="text-sm">Show Password</span>
+        </label>
+      </div>
+      <div class="flex justify-between items-center">
+        <button type="submit" class="btn bg-neutral text-white">Register</button
+        >
+        <div class="btn" id="modalClose">Close</div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById("modalClose");
+  const modalOnOff = document.getElementById("modalToggle");
+  const closeModal = () => {
+    if (modalOnOff) {
+      modalOnOff.classList.remove("modal-open");
+    }
+  };
+  if (modal) {
+    modal.addEventListener("click", closeModal);
+  }
+  document.addEventListener("DOMContentLoaded", () => {
+    const passwordInput: any = document.getElementById("password");
+    const togglePassword: any = document.getElementById("togglePassword");
+
+    togglePassword.addEventListener("change", () => {
+      passwordInput.type = togglePassword.checked ? "text" : "password";
+    });
+  });
+  const inputAvatar = document.getElementById("avatarInput");
+  const avatar: any = document.getElementById("avatar");
+  const avatarPreview = document.getElementById("avatarPreview");
+  if (inputAvatar) {
+    inputAvatar.addEventListener("change", (event: any) => {
+      event.preventDefault();
+      if (avatarPreview) {
+        avatarPreview.innerHTML = "";
+        if (event.target.files[0]) {
+          const objectUrl = URL.createObjectURL(event.target.files[0]);
+          if (avatar) {
+            avatar.value = objectUrl || "";
+          }
+          const img = document.createElement("img");
+          img.src = objectUrl;
+          img.alt = "Preview";
+          img.style.width = "300px";
+          img.style.height = "150px";
+          img.style.objectFit = "cover";
+          avatarPreview.appendChild(img);
+        }
+      }
+    });
+  }
+</script>
+
+<style>
+  #imagePreview {
+    height: 400px;
+    width: 400px;
+    object-fit: cover;
+  }
+</style>

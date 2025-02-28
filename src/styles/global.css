@@ -1,0 +1,26 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+@plugin "daisyui" {
+    themes: all;
+  }
+
+:root,html, body{
+    @apply m-0 p-0 box-border;
+}
+/* 
+body{
+    @apply bg-zinc-800 text-zinc-300
+} */
+
+input{
+    @apply ring ring-zinc-500 p-2 px-3 rounded-md;
+}
+
+td, th {
+    @apply border border-zinc-500 p-2;
+}
+
+input{
+    @apply outline-none;
+}

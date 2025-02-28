@@ -4,8 +4,8 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "prisma generate && astro build",
     "postinstall": "prisma generate",
+    "build": "prisma generate && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
